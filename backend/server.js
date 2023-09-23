@@ -3,6 +3,7 @@ require("dotenv").config();
 const workoutRoutes = require("./routes/workoutRoutes");
 const colors = require("colors");
 const connectDB = require("./libs/db");
+const cors = require("cors");
 
 const app = express();
 const PORT = process.env.PORT;
@@ -12,6 +13,9 @@ connectDB();
 
 // json middleware
 app.use(express.json());
+
+// cors middleware
+app.use(cors());
 
 // middleware that logs the path and method whenever a request comes in
 app.use((req, res, next) => {
