@@ -3,7 +3,7 @@ const {
   getWorkout,
   getWorkouts,
   deleteWorkout,
-  addWorkout,
+  createWorkout,
   updateWorkout,
 } = require("../controllers/workoutControllers");
 
@@ -16,7 +16,7 @@ router.get("/", getWorkouts);
 router.get("/:id", getWorkout);
 
 // Add a workout
-router.post("/", addWorkout);
+router.post("/", createWorkout);
 
 // Delete a workout by id
 router.delete("/:id", deleteWorkout);
