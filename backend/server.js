@@ -1,6 +1,7 @@
 const express = require("express");
 require("dotenv").config();
 const workoutRoutes = require("./routes/workoutRoutes");
+const userRoutes = require("./routes/userRoutes");
 const colors = require("colors");
 const connectDB = require("./libs/db");
 const cors = require("cors");
@@ -25,6 +26,7 @@ app.use((req, res, next) => {
 
 // Routes
 app.use("/api/workouts", workoutRoutes);
+app.use("/api/user", userRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
