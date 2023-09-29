@@ -1,25 +1,19 @@
 import axios from "axios";
 import { useState } from "react";
+import { useLogin } from "../hooks/useLogin";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { login, isLoading, error, setError } = useLogin();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
-        `http://localhost:4000/api/user/login`,
-        {
-          email,
-          password,
-        }
-      );
-      const data = response.data;
-      console.log(data);
+      await login(email, password);
     } catch (error) {
-      console.log(error);
+      setError(error.response.data.message);
     }
   };
 
@@ -32,16 +26,19 @@ const Login = () => {
         type="email"
         id="email"
         value={email}
+        disabled={isLoading}
         onChange={(e) => setEmail(e.target.value)}
       />
       <label htmlFor="password">Password:</label>
       <input
         type="password"
         id="password"
+        disabled={isLoading}
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button type="submit">Log In</button>
+      <button disabled={isLoading} type="submit">Log In</button>
+      {error && <div className="error">{error}</div>}
     </form>
   );
 };

@@ -8,11 +8,11 @@ export const useLogin = () => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(null);
 
-  const signup = async (email, password) => {
+  const login = async (email, password) => {
     setIsLoading(true);
     setError(null);
 
-    const response = await axios.post(`http://localhost:4000/api/user/signup`, {
+    const response = await axios.post(`http://localhost:4000/api/user/login`, {
       email,
       password,
     });
@@ -36,5 +36,5 @@ export const useLogin = () => {
     setIsLoading(false);
   };
 
-  return { signup, error, isLoading, setError };
+  return { login, error, isLoading, setError };
 };
