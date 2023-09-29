@@ -9,8 +9,9 @@ const Home = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get("http://localhost:4000/api/workouts");
-
+      const response = await axios.get(
+        `${import.meta.env.VITE_SERVER}workouts`
+      );
       if (response.status === 200) {
         dispatch({ type: "SET_WORKOUTS", payload: response.data });
       }
