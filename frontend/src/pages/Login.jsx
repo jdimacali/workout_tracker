@@ -5,7 +5,7 @@ import { useLogin } from "../hooks/useLogin";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { login, isLoading, error, setError } = useLogin();
+  const { login, isLoading, error, setError, setIsLoading } = useLogin();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -14,6 +14,8 @@ const Login = () => {
       await login(email, password);
     } catch (error) {
       setError(error.response.data.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -37,7 +39,9 @@ const Login = () => {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button disabled={isLoading} type="submit">Log In</button>
+      <button disabled={isLoading} type="submit">
+        Log In
+      </button>
       {error && <div className="error">{error}</div>}
     </form>
   );

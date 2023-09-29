@@ -36,5 +36,5 @@ export const useLogin = () => {
     setIsLoading(false);
   };
 
-  return { login, error, isLoading, setError };
+  return { login, error, isLoading, setError, setIsLoading };
 };
