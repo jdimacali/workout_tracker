@@ -22,6 +22,7 @@ export const useLogin = () => {
     if (response.status !== 200) {
       setIsLoading(false);
       setError(data);
+      return false;
     }
 
     if (response.status === 200) {
@@ -31,6 +32,7 @@ export const useLogin = () => {
       // update the auth context
       dispatch({ type: "LOGIN", payload: data });
       setIsLoading(false);
+      return true;
     }
 
     setIsLoading(false);
