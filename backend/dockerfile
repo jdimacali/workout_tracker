@@ -1,0 +1,14 @@
+FROM node:current-alpine3.18
+
+WORKDIR /server
+
+EXPOSE 4000
+
+COPY package.json package-lock.json ./
+
+RUN npm install
+
+COPY . ./
+
+CMD [ "npm", "run", "dev"]
+
